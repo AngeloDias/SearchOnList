@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Search on list</string>
+    <string name="app_name">SearchOnList</string>
     <string name="search_hint">Enter the name of a capital of Brazil</string>
     <string name="search_button_title">Search</string>
 </resources>

@@ -1,6 +1,5 @@
 package br.com.training.android.searchonlist.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,7 @@ class CitiesViewModel: ViewModel() {
     private val _sortedCities = MutableLiveData<List<String>>()
     val sortedCities: LiveData<List<String>> = _sortedCities
 
-    fun isQueryAllowed(query: String) {
+    fun verifyQuery(query: String) {
         var isPartialPermutation = false
         var isTypo = false
 
@@ -63,7 +62,6 @@ class CitiesViewModel: ViewModel() {
                 )
 
                 if(isPartialPermutation) {
-                    Log.d("SearchOnList", "On isPartialPermutation, city name: $elem")
                     cityName = elem
                     break
                 }
@@ -77,7 +75,6 @@ class CitiesViewModel: ViewModel() {
                     )
 
                     if(isTypo) {
-                        Log.d("SearchOnList", "On isTypo, city name: $elem")
                         cityName = elem
                         break
                     }
@@ -89,13 +86,9 @@ class CitiesViewModel: ViewModel() {
                 )
             }
 
-            Log.d("SearchOnList", "isPartialPermutation: $isPartialPermutation")
-            Log.d("SearchOnList", "isTypo: $isTypo")
-
             if((isPartialPermutation xor isTypo) || !isPartialPermutation && !isTypo) {
                 val matchingName = ArrayList<String>()
 
-                Log.d("SearchOnList", "On double check if, city name: $cityName")
                 if(cityName.isNotEmpty()) {
                     matchingName.add(cityName)
                 }
